@@ -150,6 +150,10 @@ public class FloatWindowPermissionChecker {
         return intent != null && context.getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).size() > 0;
     }
 
+    private static void showAlertToast(Context context){
+        Toast.makeText(context, TOAST_HINT, Toast.LENGTH_LONG).show();
+    }
+
     private static void applyCommonPermission(Context context) {
         try {
             Class clazz = Settings.class;
@@ -158,7 +162,7 @@ public class FloatWindowPermissionChecker {
             intent.setData(Uri.parse("package:" + context.getPackageName()));
             startActivitySafely(intent, context);
         } catch (Exception e) {
-            Toast.makeText(context, TOAST_HINT, Toast.LENGTH_LONG).show();
+            showAlertToast(context);
         }
     }
 
@@ -166,7 +170,7 @@ public class FloatWindowPermissionChecker {
         Intent intent = new Intent();
         intent.setClassName("com.yulong.android.seccenter", "com.yulong.android.seccenter.dataprotection.ui.AppListActivity");
         if (!startActivitySafely(intent, context)) {
-            Toast.makeText(context, TOAST_HINT, Toast.LENGTH_LONG).show();
+            showAlertToast(context);
         }
     }
 
@@ -174,7 +178,7 @@ public class FloatWindowPermissionChecker {
         Intent intent = new Intent();
         intent.setClassName("com.lenovo.safecenter", "com.lenovo.safecenter.MainTab.LeSafeMainActivity");
         if (!startActivitySafely(intent, context)) {
-            Toast.makeText(context, TOAST_HINT, Toast.LENGTH_LONG).show();
+            showAlertToast(context);
         }
     }
 
@@ -182,7 +186,7 @@ public class FloatWindowPermissionChecker {
         Intent intent = new Intent();
         intent.setAction("com.zte.heartyservice.intent.action.startActivity.PERMISSION_SCANNER");
         if (!startActivitySafely(intent, context)) {
-            Toast.makeText(context, TOAST_HINT, Toast.LENGTH_LONG).show();
+            showAlertToast(context);
         }
     }
 
@@ -190,7 +194,7 @@ public class FloatWindowPermissionChecker {
         Intent intent = new Intent();
         intent.setClassName("com.letv.android.letvsafe", "com.letv.android.letvsafe.AppActivity");
         if (!startActivitySafely(intent, context)) {
-            Toast.makeText(context, TOAST_HINT, Toast.LENGTH_LONG).show();
+            showAlertToast(context);
         }
     }
 
@@ -198,7 +202,7 @@ public class FloatWindowPermissionChecker {
         Intent intent = new Intent();
         intent.setClassName("com.iqoo.secure", "com.iqoo.secure.ui.phoneoptimize.FloatWindowManager");
         if (!startActivitySafely(intent, context)) {
-            Toast.makeText(context, TOAST_HINT, Toast.LENGTH_LONG).show();
+            showAlertToast(context);
         }
     }
 
@@ -214,7 +218,7 @@ public class FloatWindowPermissionChecker {
                 intent.setAction("com.coloros.safecenter");
                 intent.setClassName("com.coloros.safecenter", "com.coloros.safecenter.sysfloatwindow.FloatWindowListActivity");
                 if (!startActivitySafely(intent, context)) {
-                    Toast.makeText(context, TOAST_HINT, Toast.LENGTH_LONG).show();
+                    showAlertToast(context);
                 }
             }
         }
@@ -226,7 +230,7 @@ public class FloatWindowPermissionChecker {
         if (!startActivitySafely(intent, context)) {
             intent.setClassName("com.qihoo360.mobilesafe", "com.qihoo360.mobilesafe.ui.index.AppEnterActivity");
             if (!startActivitySafely(intent, context)) {
-                Toast.makeText(context, TOAST_HINT, Toast.LENGTH_LONG).show();
+                showAlertToast(context);
             }
         }
     }
@@ -237,7 +241,7 @@ public class FloatWindowPermissionChecker {
         intent.addCategory(Intent.CATEGORY_DEFAULT);
         intent.putExtra("extra_pkgname", context.getPackageName());
         if (!startActivitySafely(intent, context)) {
-            Toast.makeText(context, TOAST_HINT, Toast.LENGTH_LONG).show();
+            showAlertToast(context);
         }
     }
 
@@ -246,7 +250,7 @@ public class FloatWindowPermissionChecker {
         intent.setClassName("com.meizu.safe", "com.meizu.safe.security.AppSecActivity");
         intent.putExtra("packageName", context.getPackageName());
         if (!startActivitySafely(intent, context)) {
-            Toast.makeText(context, TOAST_HINT, Toast.LENGTH_LONG).show();
+            showAlertToast(context);
         }
     }
 
@@ -275,7 +279,7 @@ public class FloatWindowPermissionChecker {
             intent.setComponent(comp);
             context.startActivity(intent);
         } catch (Exception e) {
-            Toast.makeText(context, TOAST_HINT, Toast.LENGTH_LONG).show();
+            showAlertToast(context);
         }
     }
 
@@ -288,7 +292,7 @@ public class FloatWindowPermissionChecker {
             intent.setClassName("com.smartisanos.security", "com.smartisanos.security.SwitchedPermissions");
             intent.putExtra("permission", new String[]{Manifest.permission.SYSTEM_ALERT_WINDOW});
             if (!startActivitySafely(intent, context)) {
-                Toast.makeText(context, TOAST_HINT, Toast.LENGTH_LONG).show();
+                showAlertToast(context);
             }
         }
     }
