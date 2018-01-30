@@ -23,6 +23,7 @@ import static android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
 import static android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;
 import static android.view.WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
 import static android.view.WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL;
+import static android.view.WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
 import static android.view.WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
 import static android.view.WindowManager.LayoutParams.TYPE_TOAST;
 
@@ -157,11 +158,14 @@ public class FloatWindowManager {
         mSmallWindowParams.x = Resources.getSystem().getDisplayMetrics().widthPixels - mVideoViewWidth - dp12;
         mSmallWindowParams.y = Resources.getSystem().getDisplayMetrics().heightPixels - mVideoViewHeight - dp12 - mStatusBarHeight - mNavigationBarHeight;
 
-        if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 23) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            mSmallWindowParams.type = TYPE_APPLICATION_OVERLAY;
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             mSmallWindowParams.type = TYPE_TOAST;
         } else {
             mSmallWindowParams.type = TYPE_SYSTEM_ALERT;
         }
+
         mSmallWindowParams.flags = FLAG_NOT_FOCUSABLE | FLAG_NOT_TOUCH_MODAL | FLAG_HARDWARE_ACCELERATED | FLAG_LAYOUT_NO_LIMITS;
         mSmallWindowParams.format = PixelFormat.RGBA_8888;
         mSmallWindowParams.windowAnimations = android.R.style.Animation_Translucent;
